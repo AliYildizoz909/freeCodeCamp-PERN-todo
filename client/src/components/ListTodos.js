@@ -11,6 +11,19 @@ const ListTodos = () => {
       console.error(error);
     }
   };
+
+  const onDeleteTodo = async (id) => {
+    try {
+      const response = await fetch("http://localhost:5000/todos/"+id, {
+        method: "DELETE",
+      });
+
+      window.location = "/";
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   useEffect(() => {
     getTodos();
   });
@@ -25,12 +38,16 @@ const ListTodos = () => {
           </tr>
         </thead>
         <tbody>
-          {todos.map((todo,i) => {
+          {todos.map((todo, i) => {
             return (
               <tr key={i}>
                 <td>{todo.description}</td>
                 <td>Edit</td>
-                <td>Delete</td>
+                <td>
+                  <button onClick={() => {onDeleteTodo(todo.todo_id)}} className="btn btn-danger">
+                    Delete
+                  </button>
+                </td>
               </tr>
             );
           })}
