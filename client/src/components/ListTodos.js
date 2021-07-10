@@ -43,7 +43,7 @@ const ListTodos = () => {
             return (
               <tr key={todo.todo_id}>
                 <td>{todo.description}</td>
-                <td><EditTodo todo={todo} setTodos={setTodos} todos={todos}/></td>
+                <td><EditTodo todo={{...todo}}/></td>
                 <td>
                   <button
                     onClick={() => {
